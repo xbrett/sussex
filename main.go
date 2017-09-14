@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/rue-brettadcock/homesite/service"
+	"github.com/rue-brettadcock/sussex/service"
 )
 
 func main() {
