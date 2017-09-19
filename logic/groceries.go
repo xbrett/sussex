@@ -6,12 +6,14 @@ import (
 	"sync"
 )
 
+//GroceryList is used to store list info
 type GroceryList struct {
 	Title string
 	Body  []byte
-	mu    sync.Mutex
+	mu    *sync.Mutex
 }
 
+//Save writes to the file grocery-list.txt with the updated GroceryList
 func (gl GroceryList) Save() error {
 	gl.mu.Lock()
 	err := ioutil.WriteFile("./resources/grocery-list.txt", gl.Body, os.ModeDevice)
@@ -19,6 +21,7 @@ func (gl GroceryList) Save() error {
 	return err
 }
 
+//NewGroceryList generates a new empty body GroceryList titled "grocery-list"
 func NewGroceryList() GroceryList {
 	var gl GroceryList
 	gl.Title = "grocery-list"
