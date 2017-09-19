@@ -1,7 +1,7 @@
 package logic
 
 import (
-	"github.com/rue-brettadcock/sussex/database"
+	"github.com/xbrett/sussex/database"
 )
 
 type Logic struct {

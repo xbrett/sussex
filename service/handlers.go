@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/rue-brettadcock/sussex/logic"
+	"github.com/xbrett/sussex/logic"
 )
 
 //DisplayInfo is for accessing logic data
