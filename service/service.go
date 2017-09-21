@@ -17,7 +17,6 @@ func init() {
 }
 
 func ListenAndServe() {
-	//disInfo := DisplayInfo{logicDataAccess: logic.New(), gl: logic.NewGroceryList()}
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", Index)
@@ -26,6 +25,6 @@ func ListenAndServe() {
 	router.HandleFunc("/edit/grocery-list", EditGroceries)
 	router.HandleFunc("/save/grocery-list", SaveGroceries)
 
-	log.Println("Listening...")
+	log.Println("Listening...(port: 9000)")
 	http.ListenAndServe(bindTo, router)
 }
