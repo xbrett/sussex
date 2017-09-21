@@ -17,6 +17,8 @@ func init() {
 }
 
 func ListenAndServe() {
+
+	//disInfo := DisplayInfo{logicDataAccess: logic.New(), gl: logic.NewGroceryList()}
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", Index)

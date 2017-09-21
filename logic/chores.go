@@ -11,7 +11,7 @@ func init() {
 }
 
 func RotateChores() {
-	ChoreList = append(ChoreList[1:], ChoreList[1])
+	ChoreList = append(ChoreList[1:], ChoreList[0])
 }
 
 func GetCurrentChores() []string {
