@@ -9,10 +9,12 @@
     <title>ChoreBoard</title>
 </head>
 <body>
-    <h1>Grocery-list</h1>
-    <p>[<a href="/edit/grocery-list">edit</a>]</p>
-
-    <div><pre>{{printf "%v" .}}</pre></div>
+    <h1>Movie Watchlist</h1>
+    <ul>
+        {{range .}}
+        <li>{{.}}</li>
+        {{end}}
+    </ul>
     <p><a href="/">Home</a></p>
 </body>
 </html>
