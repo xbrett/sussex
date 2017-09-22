@@ -26,6 +26,7 @@ func ListenAndServe() {
 	router.HandleFunc("/view/grocery-list", ViewGroceries)
 	router.HandleFunc("/edit/grocery-list", EditGroceries)
 	router.HandleFunc("/save/grocery-list", SaveGroceries)
+	router.HandleFunc("/movies-to-watch", Movies)
 
 	log.Println("Listening...(port: 9000)")
 	http.ListenAndServe(bindTo, router)

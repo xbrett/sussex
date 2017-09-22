@@ -22,3 +22,13 @@ func init() {
 func Index(w http.ResponseWriter, r *http.Request) {
 	tpl.ExecuteTemplate(w, "index.gohtml", nil)
 }
+
+func Movies(w http.ResponseWriter, r *http.Request) {
+	var toWatch []string
+	toWatch = append(toWatch, "Godfather")
+	toWatch = append(toWatch, "The Other Guys")
+	toWatch = append(toWatch, "Taken")
+	toWatch = append(toWatch, "Get Out")
+
+	tpl.ExecuteTemplate(w, "movies.gohtml", toWatch)
+}
