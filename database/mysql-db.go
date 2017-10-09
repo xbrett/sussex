@@ -8,6 +8,14 @@
 // | item  | varchar(50) | YES  |     | NULL    |                |
 // +-------+-------------+------+-----+---------+----------------+
 
+//                ----------Chores----------
+// +-------+-------------+------+-----+---------+-------+
+// | Field | Type        | Null | Key | Default | Extra |
+// +-------+-------------+------+-----+---------+-------+
+// | name  | varchar(20) | YES  |     | NULL    |       |
+// | chore | varchar(20) | YES  |     | NULL    |       |
+// +-------+-------------+------+-----+---------+-------+
+
 package database
 
 import (
@@ -26,6 +34,12 @@ type SQLdb struct {
 	db *sql.DB
 }
 
+type ChorePair struct {
+	Name  string
+	Chore string
+	ID    int
+}
+
 func openDatabaseConnection() *sql.DB {
 
 	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/SussexSite")
@@ -39,17 +53,15 @@ func openDatabaseConnection() *sql.DB {
 	return db
 }
 
-func (s *SQLdb) useTable(table string) error {
-	_, err := s.db.Exec("USE ?", table)
-	return err
-}
-
 func (s *SQLdb) insertIntoGroceries(item interface{}) error {
 	return errors.New("stuff")
 }
 
-func (s *SQLdb) insertIntoChores(item interface{}) error {
-	return errors.New("thing 2")
+func (s *SQLdb) UpdateChores(item interface{}) error {
+	var cp ChorePair
+	cp = item.(ChorePair)
+	_, err := s.db.Exec("UPDATE chores SET chore=? WHERE id=? VALUES(?, ?)", cp.Chore, cp.ID)
+	return err
 }
 
 func (s *SQLdb) insertIntoMovies(item interface{}) error {
@@ -63,26 +75,26 @@ func (s *SQLdb) Delete(id string, table string) error {
 }
 
 //Insert puts given product information into the products table in the db
-func (s *SQLdb) Insert(item interface{}, table string) error {
-	var err error
-	switch table {
-	case "groceries":
-		err = s.insertIntoGroceries(item)
-	case "chores":
-		err = s.insertIntoChores(item)
-	case "movies":
-		err = s.insertIntoMovies(item)
-	default:
-		err = errors.New("No table with name: " + table)
-	}
-	return err
-}
-
-// //Update changes the products quantity
-// func (s *SQLdb) Update(item interface{}, table string) error {
-// 	_, err := s.db.Exec("UPDATE ? SET quantity=? WHERE id=?", table)
+// func (s *SQLdb) Insert(item interface{}, table string) error {
+// 	var err error
+// 	switch table {
+// 	case "groceries":
+// 		err = s.insertIntoGroceries(item)
+// 	case "chores":
+// 		err = s.insertIntoChores(item)
+// 	case "movies":
+// 		err = s.insertIntoMovies(item)
+// 	default:
+// 		err = errors.New("No table with name: " + table)
+// 	}
 // 	return err
 // }
+
+//Update changes the products quantity
+func (s *SQLdb) Update(item interface{}, table string) error {
+	_, err := s.db.Exec("UPDATE ? SET chore=? WHERE id=?", table)
+	return err
+}
 
 //Get returns the product info for a given id
 func (s *SQLdb) Get(id string, table string) string {

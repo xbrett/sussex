@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/xbrett/sussex/logic"
 )
 
 var (
@@ -18,11 +19,11 @@ func init() {
 
 func ListenAndServe() {
 
-	//disInfo := DisplayInfo{logicDataAccess: logic.New(), gl: logic.NewGroceryList()}
+	disInfo := DisplayInfo{logicDataAccess: logic.New(), gl: logic.NewGroceryList()}
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", Index)
-	router.HandleFunc("/chores", Chores)
+	router.HandleFunc("/chores", disInfo.Chores)
 	router.HandleFunc("/view/grocery-list", ViewGroceries)
 	router.HandleFunc("/edit/grocery-list", EditGroceries)
 	router.HandleFunc("/save/grocery-list", SaveGroceries)

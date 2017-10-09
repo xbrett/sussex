@@ -17,22 +17,12 @@
                 <th>Chore this week</th>
             </thead>
             <tbody>
+                {{range .}}
                 <tr>
-                    <td>Brett</td>
-                    <td>{{index . 0}}</td>
+                    <td>{{.Name}}</td>
+                    <td>{{.Chore}}</td>
                 </tr>
-                <tr>
-                    <td>Jason</td>
-                    <td>{{index . 1}}</td>
-                </tr>
-                <tr>
-                    <td>Quinn</td>
-                    <td>{{index . 2}}</td>
-                </tr>
-                <tr>
-                    <td>Paul</td>
-                    <td>{{index . 3}}</td>
-                </tr>
+                {{end}}
             </tbody>
         </table>
     </div>
